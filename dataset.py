@@ -9,7 +9,7 @@ class RatingsDataset(Dataset):
         self.data = pd.read_csv(csv_file)
         
         # Convert timestamp to unix timestamp
-        self.data['timestamp'] = self.data['timestamp'].apply(lambda x: int(datetime.datetime.strptime(x, '%Y-%m-%d %H:%M:%S').timestamp()))
+        # self.data['timestamp'] = self.data['timestamp'].apply(lambda x: int(datetime.datetime.strptime(x, '%Y-%m-%d %H:%M:%S').timestamp()))
         
         # Split data into train, validation, and test sets based on timestamp
         self.data = self.data.sort_values(by='timestamp')
