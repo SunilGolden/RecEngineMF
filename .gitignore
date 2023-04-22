@@ -1,0 +1,24 @@
+# .gitignore
+
+# Model weights or checkpoints
+*.pth
+*.pt
+
+# Training data
+/data/
+
+# Cached or intermediate files
+*.cache
+*.log
+
+# Virtual environment files
+*.venv
+*.env
+
+# Log files
+*.log
+
+# IDE or editor-specific files
+.vscode/
+.idea/
+*.pycproject
