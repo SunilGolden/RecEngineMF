@@ -134,6 +134,11 @@ def test(model_path, test_loader):
             mae += calculate_mae(predictions.cpu().numpy(), ratings.cpu().numpy())
             rmse += calculate_rmse(predictions.cpu().numpy(), ratings.cpu().numpy())
 
+            del(users)
+            del(items)
+            del(ratings)
+            del(predictions)
+
     print('MAE:', mae)
     print('RMSE:', rmse)
 
