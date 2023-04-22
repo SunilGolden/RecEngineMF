@@ -9,10 +9,8 @@ def main():
 	parser = argparse.ArgumentParser(
 		description='Make Inference')
 	
-	parser.add_argument('--random_seed', type=int, default=42)
 	parser.add_argument('--model_path', type=str, default='./mf_model.pth')
 	parser.add_argument('--data_path', type=str, default='./ratings.csv')
-	parser.add_argument('--batch_size', type=int, default=64000)
 	parser.add_argument('--user_id', type=int, default=1)
 	parser.add_argument('--n_items', type=int, default=10)
 		
@@ -21,7 +19,6 @@ def main():
 	reset_random(args.random_seed)
 
 	train_dataset = RatingsDataset(args.data_path, split='train')
-	train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
 	
 	user_to_idx = train_dataset.user_to_idx.copy()
 	idx_to_item = train_dataset.idx_to_item.copy()
