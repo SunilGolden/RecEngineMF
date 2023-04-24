@@ -16,8 +16,6 @@ def main():
 		
 	args = parser.parse_args()
 
-	reset_random(args.random_seed)
-
 	train_dataset = RatingsDataset(args.data_path, split='train')
 	
 	user_to_idx = train_dataset.user_to_idx.copy()
@@ -34,7 +32,7 @@ def main():
 		k=args.n_items
 	)
 	
-	print(top_k_recommendations)
+	print({'user_id': args.user_id, 'item_id': top_k_recommendations})
 
 
 if __name__ == '__main__':
