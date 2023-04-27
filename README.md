@@ -112,6 +112,7 @@ python plot.py --metrics_csv_path METRICS_CSV_PATH [--save SAVE] [--file_name FI
 - **--metrics_csv_path:** Path to the CSV file containing the mertics data. [ CSV file with column names: **'Epoch', 'Train Loss', 'Val Loss'** ]
 
 #### Optional Flags
+- **--patience:** Patience for early stopping. Default is **None**.
 - **--save:** Whether to save the plot or not. Default is **True**.
 - **--file_name:** The name for saving the plot. Default is **loss_curve.png**.
 
@@ -119,4 +120,5 @@ python plot.py --metrics_csv_path METRICS_CSV_PATH [--save SAVE] [--file_name FI
 
 # References
 
-- **[Matrix Factorization Techniques for Recommender Systems](datajobs.com/data-science-repo/Recommender-Systems-[Netflix].pdf)**
+- **[Matrix Factorization Techniques for Recommender Systems](https://ieeexplore.ieee.org/document/5197422)** 
+(Y. Koren, R. Bell and C. Volinsky, "Matrix Factorization Techniques for Recommender Systems," in Computer, vol. 42, no. 8, pp. 30-37, Aug. 2009, doi: 10.1109/MC.2009.263.)
