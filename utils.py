@@ -180,7 +180,7 @@ def calculate_rmse(predictions, actual_ratings):
     return np.sqrt(np.mean((predictions - actual_ratings) ** 2))
 
 
-def plot_loss_curve_from_csv(metrics_csv_path, save=True, file_name='loss_curve.png'):
+def plot_loss_curve_from_csv(metrics_csv_path, patience=None, save=True, file_name='loss_curve.png'):
     df = pd.read_csv(metrics_csv_path)
 
     epoch = df['Epoch']
@@ -192,6 +192,10 @@ def plot_loss_curve_from_csv(metrics_csv_path, save=True, file_name='loss_curve.
     plt.figure(figsize=(10, 6))
     plt.plot(loss_df['Epoch'], loss_df['Train Loss'], label='Train Loss')
     plt.plot(loss_df['Epoch'], loss_df['Val Loss'], label='Val Loss')
+    
+    if patience:
+        plt.plot([len(epoch)-patience, len(epoch)-patience], plt.ylim(), label='Early Stopped', linestyle='--', color='black')
+    
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
     plt.title('Training and Validation Loss')

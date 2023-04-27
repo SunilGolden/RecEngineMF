@@ -8,13 +8,16 @@ def main():
 		description='Plot Train and Validation Loss Curve')
 	
 	parser.add_argument('--save', type=bool, default=True)
+	parser.add_argument('--patience', type=int, default=None)
 	parser.add_argument('--file_name', type=str, default='loss_curve.png')
 	parser.add_argument('--metrics_csv_path', type=str, default='./metrics.csv')
 	
 	args = parser.parse_args()
 
-	plot_loss_curve_from_csv(args.metrics_csv_path, args.save, args.file_name)
-
+	plot_loss_curve_from_csv(metrics_csv_path=args.metrics_csv_path,
+        patience=args.patience, 
+        save=args.save, 
+        file_name=args.file_name)
 
 if __name__ == '__main__':
 	main()
