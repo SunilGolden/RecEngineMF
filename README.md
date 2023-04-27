@@ -4,7 +4,21 @@
 
 # Data
 
-#### [MovieLens 20M Dataset](https://grouplens.org/datasets/movielens/20m/)
+## [MovieLens 20M Dataset](https://grouplens.org/datasets/movielens/20m/)
+
+#### Command to Download and Extract Data
+
+1. **Download** MovieLens 20M Data
+
+	```bash
+	wget --output-document=./ml-20m.zip  https://files.grouplens.org/datasets/movielens/ml-20m.zip
+	```
+
+2. Once the download is complete, **extract** the dataset
+
+	```bash
+	unzip ml-20m.zip
+	```
 
 <br />
 
