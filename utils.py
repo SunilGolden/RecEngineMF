@@ -28,7 +28,7 @@ def calc_loss(model, loader):
     model.eval()
     
     loss = 0.0
-    num_batches = 0
+    num_batches = len(loader.dataset) / loader.batch_size
 
     with torch.no_grad():
         for batch in loader:
@@ -39,7 +39,6 @@ def calc_loss(model, loader):
             y_hat = model(users, items)
             batch_loss = F.mse_loss(y_hat, ratings)
             loss += batch_loss.item()
-            num_batches += 1
     
     return loss / num_batches
 
@@ -74,7 +73,7 @@ def train_epochs(model,
         model.train()
         
         train_loss = 0.0
-        num_batches = 0
+        num_batches = len(train_loader.dataset) / train_loader.batch_size
         
         for batch in train_loader:
             users = batch['user'].to(device)
@@ -89,7 +88,6 @@ def train_epochs(model,
             optimizer.step()
             
             train_loss += batch_loss.item()
-            num_batches += 1
             
             del(users)
             del(items)
