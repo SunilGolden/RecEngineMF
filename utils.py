@@ -93,18 +93,20 @@ def train_epochs(model,
             del(items)
             del(ratings)
             del(y_hat)
+
+        scheduler.step()
         
         val_loss = calc_loss(model, val_loader)
         csv_logger.writerow([i+1, train_loss / num_batches, val_loss])
         
         if verbose:
-        	print('Epoch: %d\tTrain Loss: %.4f\t Val Loss: %.4f'% (i+1, train_loss / num_batches, val_loss))
+            print('Epoch: %d\tTrain Loss: %.4f\t Val Loss: %.4f'% (i+1, train_loss / num_batches, val_loss))
         
         if val_loss < best_val_loss:
             best_val_loss = val_loss
             best_model = copy.deepcopy(model)
             early_stopping_counter = 0
-            torch.save(model, model_name)
+            torch.save(best_model, model_name)
         else:
             early_stopping_counter += 1
             if early_stopping_counter >= patience:
