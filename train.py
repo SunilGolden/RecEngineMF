@@ -24,7 +24,7 @@ def main():
 	parser.add_argument('--patience', type=int, default=3)
 	parser.add_argument('--model_name', type=str, default='mf_model.pth')
 	parser.add_argument('--metrics_csv_name', type=str, default='metrics.csv')
-	parser.add_argument('--verbose', type=bool, default=True)
+	parser.add_argument('--silent', action='store_true')
 		
 	args = parser.parse_args()
 
@@ -49,8 +49,8 @@ def main():
 	model = MF(train_dataset.num_users, train_dataset.num_items, emb_size=args.emb_size)
 
 	if torch.cuda.device_count() > 1:
-	    print("Available GPUs", torch.cuda.device_count())
-	    model = nn.DataParallel(model)
+		print("Available GPUs", torch.cuda.device_count())
+		model = nn.DataParallel(model)
 
 	train_epochs(model, 
 	             train_loader, 
@@ -63,7 +63,7 @@ def main():
 	             patience=args.patience,
 	             model_name=args.model_name,
 	             metrics_csv_name=args.metrics_csv_name,
-	             verbose=args.verbose)
+	             silent=args.silent)
 
 
 if __name__ == '__main__':

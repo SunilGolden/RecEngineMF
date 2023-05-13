@@ -61,7 +61,7 @@ python train.py --data_path DATA_PATH [--emb_size EMB_SIZE] [--random_seed RANDO
                 [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--learning_rate LEARNING_RATE] 
                 [--weight_decay WEIGHT_DECAY] [--step_size STEP_SIZE] [--gamma GAMMA] 
                 [--patience PATIENCE] [--model_name MODEL_NAME] [--metrics_csv_name METRICS_CSV_NAME]
-                [--verbose VERBOSE]
+                [--silent]
 ```
 
 #### Required Flag
@@ -79,7 +79,7 @@ python train.py --data_path DATA_PATH [--emb_size EMB_SIZE] [--random_seed RANDO
 - **--patience:** Patience for early stopping based on validation loss. Default is **3**.
 - **--model_name:** Name of the trained model file to be saved. Default is **'mf_model.pth'**.
 - **--metrics_csv_name:** Name of the CSV file to save the training metrics. Default is **'metrics.csv'**.
-- **--verbose:** Whether to print verbose output during training. Default is **True**.
+- **--silent:** Whether to hide verbose output during training.
 
 <br />
 

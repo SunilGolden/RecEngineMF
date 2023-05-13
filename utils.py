@@ -64,7 +64,7 @@ def train_epochs(model,
                  patience=3, 
                  model_name='mf_model.pth',
                  metrics_csv_name='metrics.csv',
-                 verbose=True):
+                 silent=False):
     device = get_device()
 
     model.to(device)
@@ -109,7 +109,7 @@ def train_epochs(model,
         val_loss = calc_loss(model, val_loader)
         csv_logger.writerow([i+1, train_loss / num_batches, val_loss])
         
-        if verbose:
+        if not silent:
             print('Epoch: %d\tTrain Loss: %.4f\t Val Loss: %.4f'% (i+1, train_loss / num_batches, val_loss))
         
         if val_loss < best_val_loss:
