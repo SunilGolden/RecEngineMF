@@ -39,7 +39,7 @@ def calc_loss(model, loader):
     model.eval()
     
     loss = 0.0
-    num_batches = loader.batch_size
+    num_batches = len(loader)
 
     with torch.no_grad():
         for batch in loader:
@@ -85,7 +85,7 @@ def train_epochs(model,
         model.train()
         
         train_loss = 0.0
-        num_batches = train_loader.batch_size
+        num_batches = len(train_loader)
         
         for batch in train_loader:
             users = batch['user'].to(device)
