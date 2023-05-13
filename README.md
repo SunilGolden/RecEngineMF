@@ -119,7 +119,7 @@ python inference.py --data_path DATA_PATH --model_path MODEL_PATH --user_id USER
 ## Plot Curve
 
 ```bash
-python plot.py --metrics_csv_path METRICS_CSV_PATH [--patience PATIENCE] [--save SAVE] [--file_name FILE_NAME]
+python plot.py --metrics_csv_path METRICS_CSV_PATH [--patience PATIENCE] [--file_name FILE_NAME]
 ```
 
 #### Required Flags
@@ -127,7 +127,6 @@ python plot.py --metrics_csv_path METRICS_CSV_PATH [--patience PATIENCE] [--save
 
 #### Optional Flags
 - **--patience:** Patience for early stopping. Default is **None**.
-- **--save:** Whether to save the plot or not. Default is **True**.
 - **--file_name:** The name for saving the plot. Default is **loss_curve.png**.
 
 <br />
