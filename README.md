@@ -51,6 +51,17 @@
 	```bash
 	pip install -r requirements.txt
 	```
+5. **Add wandb API key**
+	
+	Sign in to https://wandb.ai and get your API key.
+	<br />
+	Create a file **secrets.json** in the root directory and put your wandb API key.
+
+	```json
+	{
+		"WANDB_API_KEY": "YOUR_API_KEY"
+	}
+	```
 
 <br />
 
