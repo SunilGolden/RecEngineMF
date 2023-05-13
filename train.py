@@ -2,8 +2,10 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 import argparse
-from dataset import RatingsDataset
+import wandb
+import json
 
+from dataset import RatingsDataset
 from models import MF
 from utils import reset_random, train_epochs
 
@@ -25,10 +27,36 @@ def main():
 	parser.add_argument('--model_name', type=str, default='mf_model.pth')
 	parser.add_argument('--metrics_csv_name', type=str, default='metrics.csv')
 	parser.add_argument('--silent', action='store_true')
+	parser.add_argument('--log_wandb', action='store_true')
 		
 	args = parser.parse_args()
 
 	reset_random(args.random_seed)
+
+	if args.log_wandb:
+		with open('secrets.json', 'r') as f:
+			secrets = json.load(f)
+
+		WANDB_API_KEY = secrets['WANDB_API_KEY']
+
+		wandb.login(key=WANDB_API_KEY)
+
+		wandb.init(
+			project="RecEngineMF",
+
+			# Track hyperparameters and run metadata
+			config = {
+				"random_seed": args.random_seed,
+				"batch_size": args.batch_size,
+				"epochs": args.epochs,
+				"learning_rate": args.learning_rate,
+				"weight_decay": args.weight_decay,
+				"step_size": args.step_size,
+				"gamma": args.gamma,
+				"patience": args.patience,
+				"model_name": args.model_name
+			}
+		)
 
 	train_dataset = RatingsDataset(args.data_path, split='train')
 
@@ -63,7 +91,8 @@ def main():
 	             patience=args.patience,
 	             model_name=args.model_name,
 	             metrics_csv_name=args.metrics_csv_name,
-	             silent=args.silent)
+	             silent=args.silent,
+				 log_wandb=args.log_wandb)
 
 
 if __name__ == '__main__':

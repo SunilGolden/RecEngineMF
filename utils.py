@@ -7,6 +7,7 @@ import random
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import wandb
 
 
 def reset_random(random_seed=42):
@@ -64,7 +65,8 @@ def train_epochs(model,
                  patience=3, 
                  model_name='mf_model.pth',
                  metrics_csv_name='metrics.csv',
-                 silent=False):
+                 silent=False,
+                 log_wandb=False):
     device = get_device()
 
     model.to(device)
@@ -109,6 +111,13 @@ def train_epochs(model,
         val_loss = calc_loss(model, val_loader)
         csv_logger.writerow([i+1, train_loss / num_batches, val_loss])
         
+        if log_wandb:
+            wandb.log({
+                'epoch' :i+1,
+                'train_loss' :train_loss / num_batches, 
+                'val_loss' :val_loss,
+                })
+
         if not silent:
             print('Epoch: %d\tTrain Loss: %.4f\t Val Loss: %.4f'% (i+1, train_loss / num_batches, val_loss))
         
