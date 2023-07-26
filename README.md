@@ -36,12 +36,17 @@
 
 3. **Activate the virtual environment**
 
-	> For Windows
+	> For Windows CMD Users 
 	```bash
-	myenv\Scripts\activate
-	```
+	.\myenv\Scripts\Activate.bat
+ 	```
+ 
+	> For Windows Powershell Users 
+	```bash
+	.\myenv\Scripts\Activate.ps1
+	``` 
 
-	> For macOS/Linux
+	> For macOS/Linux Users
 	```bash
 	source myenv/bin/activate
 	```
